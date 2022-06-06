@@ -63,7 +63,7 @@ namespace templates {
         T & operator[](int index); // Just declare operator[] in class
     };
 
-    // Implementation of operator[] later in the .h - external nonclassmemnber
+    // Implementation of operator[] later in the .h - external non-classmember
     template <typename T> T & buffer<T>::operator[](int index)
     { return a[index]; }
 
@@ -72,7 +72,9 @@ namespace templates {
     OutIterator copy_if(InIterator first, InIterator last, OutIterator result, Predicate pred)
     {
         for ( ; first != last; ++first)
-            if (pred(*first)) *result++ = *first;
+            if (pred(*first)){
+                *result++ = *first;
+            }
         return result;
     }
 }
