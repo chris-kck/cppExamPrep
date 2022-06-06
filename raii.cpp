@@ -95,11 +95,11 @@ namespace ClassMember {
 
     class Buffer {
     public:
-        int N
+        int N;
         float * a;
         const static int DEFAULT_SIZE = 10;
         const static std::string NAME;
-        Buffer(int size=DEFAULT_SIZE): N(size=), a(new float [N]){} //get size with default parameter, create a heap pointing pointer.
+        Buffer(int size=DEFAULT_SIZE): N(size), a(new float [N]){} //get size with default parameter, create a heap pointing pointer.
         ~Buffer(){
             delete[] a;
         }
