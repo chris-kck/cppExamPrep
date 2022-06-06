@@ -5,6 +5,8 @@
 #include <memory>
 #include <iostream>
 #include <vector>
+#include <string>
+
 using std::cout; using std::endl;
 
 void vectorIterators (void) {
@@ -26,6 +28,19 @@ void vectorIterators (void) {
 }
 
 int main(){
-    vectorIterators();
+    //vectorIterators();
+    std::vector<int> a = {3,4,5};
+    for( auto it=a.begin(); it!=a.end(); it++){
+        std::cout << *it << std::endl;
+    }
+
+    std::vector<std::string> b = {"srdgf", "wefd","ergdvfc"};
+    for( auto it=b.begin(); it!=b.end(); it++){ // iterator will have a "pointer"
+        std::cout << *it << std::endl;
+    }
+    for (std::string c : b){ //for each loop will have the actual value
+        cout << c << endl;
+    }
+
 }
 
