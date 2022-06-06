@@ -78,13 +78,23 @@ void nestedClass(){
     Outer::Inner innerClass(outerClass);
 };
 
+int & func(int &ty) {
+     ty *= 10 ;
+    //int &b = a;
+    return ty;
+}
 int main(int argc, char * argv[]) {
 
-    nestedClass();
-    testIO();
-    testStruct();
-    MyMacro(4+4,2);
-    MyMacro1(3,5);
+//    nestedClass();
+//    testIO();
+//    testStruct();
+//    MyMacro(4+4,2);
+//    MyMacro1(3,5);
+
+int a = 50;
+ int &c = func(a);
+ std::cout<< c;
+
 
 
 }
