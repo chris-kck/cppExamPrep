@@ -6,6 +6,7 @@
 #include "fstream"
 //#include "ostream"
 #include "sstream"
+#include <vector>
 
 #define MyMacro(x,y) std::cout << "Normal Macro: " << (x * y) << std::endl
 #define MyMacro1(x,y) std::cout << "Token concatenation Macro: " << (x##y) << std::dec << std::endl
@@ -24,6 +25,20 @@ private:
 protected:
     int d;
 };
+
+// class for const correctness and const_cast example.
+class K{
+public:
+    const int k;
+    int j;
+
+    K(int k, int j):k(k), j(j){}
+
+    void assign()const{
+        const_cast<K*>(this)->j=5;
+        std::cout << j;
+    }
+};
 class Outer{
 private:
     int i;
@@ -36,6 +51,11 @@ public:
         }
     };
 };
+
+void testConstCorrectness(){
+    K a = K(2,3);
+    a.assign();
+}
 
 void testStruct(){
     MyStruct a(1,"56");
@@ -90,10 +110,22 @@ int main(int argc, char * argv[]) {
 //    testStruct();
 //    MyMacro(4+4,2);
 //    MyMacro1(3,5);
+    //testConstCorrectness();
+    //array of int vectors!
+    /*
+    std::vector<int> myC[5];// = {'3','r','t','\0'};
 
-int a = 50;
- int &c = func(a);
- std::cout<< c;
+    for(int i=0; i<10; i++) {
+        myC[i%4].push_back(4);
+        std::cout << myC[i%4].size() << " " << endl;
+    }
+    */
+
+    int a = 50;
+    int &c = a;//func(a);
+    std::cout<< &c << " " << &a;
+
+
 
 
 
