@@ -20,6 +20,8 @@ LIBS=-std=c++2a   # the libraries we will ref
 #test: $(OBJ_FILES)
 #	$(CC) -o $@ $^ #&& $(CC) $@ -o $(addsuffix .exe $(basename $@ .o))
 
+.PHONY: dynamicCasting.o # force rebuilding target each time. #.PHONY: all - forces all to rebuild.
+
 ExamPractice: ExamPractice.cpp
 	$(CC) -c ExamPractice.cpp $(LIBS) && $(CC) ExamPractice.o -o ExamPractice.exe $(LIBS)
 
@@ -38,6 +40,9 @@ containers: containers.cpp
 operatorOverloading: operatorOverloading.cpp
 	$(CC) -c operatorOverloading.cpp $(LIBS) && $(CC) operatorOverloading.o -o operatorOverloading.exe && ./operatorOverloading.exe
 
+dynamicCasting.o: dynamicCasting.cpp
+	$(CC) -c $<  $(LIBS) && $(CC) $@ -o dynamicCasting.exe && ./dynamicCasting.exe
+
 raii: raii.cpp
 	$(CC) -c raii.cpp $(LIBS) && $(CC) raii.o -o raii.exe && ./raii.exe
 
@@ -45,8 +50,8 @@ templates: templates.cpp
 	$(CC) -c templates.cpp $(LIBS) && $(CC) templates.o -o templates.exe && ./templates.exe
 
 
-all: pointers inheritance ExamPractice containers playground
-	@echo "Targets ran:" $^;
+all: pointers inheritance ExamPractice containers playground operatorOverloading dynamicCasting.o raii templates
+	@echo "\nTargets ran:" $^;
 
 # deletes all the object code files
 clean:
