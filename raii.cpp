@@ -77,13 +77,14 @@ namespace ClassMember {
             std::cout << "MOVE ASSIGNMENT Operator invoked" << std::endl;
             fullname=std::move(rhs.fullname);
             secretsNo= std::move(rhs.secretsNo); //no effect for ints. just do anyway.
+            if (secretsArray!= nullptr) delete[] secretsArray;
             secretsArray = rhs.secretsArray;
             delete [] rhs.secretsArray; //if on stack, set to nullptr.
             //individual secrets moved by moving address
             return *this;
         }
         ~Person(){
-            delete[] secretsArray;
+            if (secretsArray!= nullptr) delete[] secretsArray;
             //std::cout << "Destructor invoked" << std::endl;
         }
     private:
