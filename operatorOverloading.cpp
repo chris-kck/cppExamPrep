@@ -35,7 +35,8 @@ public:
         temp.netWorth += rhs.netWorth;
         return temp;
     }
-    friend Person & operator-=(Person & lhs ,const Person & rhs);
+    //friend Person & operator-=(Person & lhs ,const Person & rhs);
+    Person & operator-=(const Person & rhs);
 private:
     int netWorth;
 };
@@ -47,11 +48,21 @@ std::ostream & operator<<(std::ostream & out, const Person & rhs){
     out << rhs.firstname + " " + rhs.middlename << " " << rhs.lastname << " " << rhs.age << " " << rhs.netWorth << " " << rhs.gender << endl;
     return out;
 }
-
+/*
+ * Make Friend inside class since its a free function.
+ * Not standard aproach
 Person & operator-=(Person & lhs, const Person & rhs){ //TODO no extra qualification required?
     lhs.age-=rhs.age;
     lhs.netWorth-= rhs.netWorth;
     return lhs;
+}
+ */
+
+// define signature in class, implement outside with scope resolution to access internals.
+Person & Person::operator-=(const Person & rhs){ //TODO Extra qualification required when defined in header.
+    this->age-=rhs.age;
+    this->netWorth-= rhs.netWorth;
+    return *this;
 }
 
 
